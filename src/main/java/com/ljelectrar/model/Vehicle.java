@@ -2,6 +2,8 @@ package com.ljelectrar.model;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -28,6 +30,7 @@ public class Vehicle {
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(length = 30)
+	@JsonProperty("association_date")
 	private Date associationDate;
 
 	public Vehicle() {
