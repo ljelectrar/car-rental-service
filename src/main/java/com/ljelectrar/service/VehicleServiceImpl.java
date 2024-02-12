@@ -4,12 +4,15 @@ import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.ljelectrar.model.Status;
 import com.ljelectrar.model.Vehicle;
 import com.ljelectrar.repository.VehicleRepository;
 
-@Service
+@Service 
+@Transactional
 public class VehicleServiceImpl implements VehicleService {
 
 	@Autowired
@@ -20,9 +23,10 @@ public class VehicleServiceImpl implements VehicleService {
 		vehicle.setStatus(Status.AVAILABLE);
 		vehicle.setOwner(null);
 		vehicle.setAssociationDate(null);
+		
 		return repository.save(vehicle);
 	}
-
+	 
 	@Override
 	public void validateVehicle(String vehicleId) {
 		repository.findById(Long.valueOf(vehicleId)).orElseThrow();
